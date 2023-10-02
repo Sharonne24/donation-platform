@@ -13,6 +13,11 @@ class SessionsController < ApplicationController
         flash.now[:alert] = 'Invalid email/password combination.'
         render :new
       end
+
+    else
+      flash.now[:alert] = 'Invalid form submission.'
+      render :new
+    end
   end
 
   def destroy
