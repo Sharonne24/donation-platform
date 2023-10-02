@@ -24,4 +24,10 @@ class SessionsController < ApplicationController
     log_out  
     redirect_to root_url, notice: 'Logged out.'
   end
+
+  private
+
+  def log_in(user)
+    session[:user_id] = user.id
+  end
 end
