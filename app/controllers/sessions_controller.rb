@@ -8,6 +8,11 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:session][:password])
         log_in(user)
         redirect_to root_url, notice: 'Login successful.'
+
+      else
+        flash.now[:alert] = 'Invalid email/password combination.'
+        render :new
+      end
   end
 
   def destroy
