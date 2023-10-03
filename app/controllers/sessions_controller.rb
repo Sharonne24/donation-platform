@@ -3,26 +3,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-      if params[:session].present?
-      user = User.find_by(email: params[:session][:email])
-      if user && user.authenticate(params[:session][:password])
+     
+      user = User.find_by(email: params[:email])
+      if user && user.authenticate(params[:password])
         log_in(user)
-        redirect_to root_url, notice: 'Login successful.'
-
+        render json: {message: "Login success!"}, status: :created
       else
-        flash.now[:alert] = 'Invalid email/password combination.'
-        render :new
+       render json: {error: "Invalid email or password"},status: :unauthorized
       end
-
-    else
-      flash.now[:alert] = 'Invalid form submission.'
-      render :new
-    end
   end
 
   def destroy
     log_out  
-    redirect_to root_url, notice: 'Logged out.'
+    head :no_content
   end
 
   private
