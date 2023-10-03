@@ -7,7 +7,9 @@ class SessionsController < ApplicationController
       user = User.find_by(email: params[:email])
       if user && user.authenticate(params[:password])
         log_in(user)
-        render json: {message: "Login success!"}, status: :created
+        payload={user_id: user.id}
+        token= JWT.encode(payload, ENV["JWT_SECRET"])
+        render json: {id: user.id, email: user.email, firstname: user.firstname, secondname: user.secondname, role: user.role, token: token}, status: :created
       else
        render json: {error: "Invalid email or password"},status: :unauthorized
       end
