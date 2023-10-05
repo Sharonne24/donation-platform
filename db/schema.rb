@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_04_085035) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_093224) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,12 +39,40 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_085035) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "beneficiaries", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "charities", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "donations", force: :cascade do |t|
+    t.integer "donor_id", null: false
+    t.integer "charity_id", null: false
+    t.decimal "amount"
+    t.boolean "recurring"
+    t.boolean "anonymous"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charity_id"], name: "index_donations_on_charity_id"
+    t.index ["donor_id"], name: "index_donations_on_donor_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.integer "charity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["charity_id"], name: "index_stories_on_charity_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,4 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_04_085035) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "donations", "charities"
+  add_foreign_key "donations", "donors"
+  add_foreign_key "stories", "charities"
 end
