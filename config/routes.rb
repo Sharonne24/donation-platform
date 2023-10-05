@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'charities/apply'
+  get 'charities/edit'
+  get 'charities/update'
+  get 'charities/donors'
+  get 'charities/donations'
+  get 'charities/stories'
+  get 'charities/beneficiaries'
+  get 'charities/automated_donations'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
