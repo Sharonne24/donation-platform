@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_093224) do
   end
 
   create_table "donations", force: :cascade do |t|
-    t.integer "donor_id", null: false
+    t.integer "user_id", null: false
     t.integer "charity_id", null: false
     t.decimal "amount"
     t.boolean "recurring"
@@ -63,7 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_093224) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["charity_id"], name: "index_donations_on_charity_id"
-    t.index ["donor_id"], name: "index_donations_on_donor_id"
+    t.index ["user_id"], name: "index_donations_on_user_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -76,18 +76,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_093224) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "email"
     t.string "firstname"
     t.string "secondname"
-    t.string "role"
+    t.string "email"
     t.string "password_digest"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "donations", "charities"
-  add_foreign_key "donations", "donors"
+  add_foreign_key "donations", "users"
   add_foreign_key "stories", "charities"
 end
