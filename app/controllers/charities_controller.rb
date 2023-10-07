@@ -24,6 +24,11 @@ class CharitiesController < ApplicationController
     charity = Charity.find(params[:id])
     render json: charity
   end
+  #edit the charity details
+  def edit
+    charity = Charity.find(params[:id])
+    render json: charity
+  end
   
   
 
@@ -32,7 +37,7 @@ class CharitiesController < ApplicationController
   def find_charity
     @charity = Charity.find(params[:id])
   end
-  
+
 
   def charity_params
     params.permit(:name, :description, :status, :image_url).merge(user_id: session[:user_id])
