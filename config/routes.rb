@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
-  get 'users/new'
-   get 'users/create'
+   get 'users/new'
+    get 'users/create'
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
@@ -29,4 +29,7 @@ Rails.application.routes.draw do
   resources :charities do
     post 'apply', on: :collection
   end
+
+   devise_for :users
+
 end
