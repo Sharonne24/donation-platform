@@ -1,27 +1,28 @@
+
 class CharitiesController < ApplicationController
-  before_action :authenticate_user!, only: [:apply, :edit, :update, :donors, :donations, :stories, :beneficiaries, :automated_donations]
+  # before_action :authenticate_user!, only: [:apply]
 
+
+  # Apply to Become a Charity
   def apply
+     charity = Charity.create!(charity_params)
+
+    if charity
+      render json: { message: "Your charity application has been submitted. We will review it shortly." }, status: :created
+    else
+      render json: {message: "Application failed"}, status: :internal_server_error
+    end
   end
 
-  def edit
+  
+
+  private
+
+  def charity_params
+    params.permit(:name, :description, :status, :image_url).merge(user_id: session[:user_id])
   end
 
-  def update
-  end
-
-  def donors
-  end
-
-  def donations
-  end
-
-  def stories
-  end
-
-  def beneficiaries
-  end
-
-  def automated_donations
+  def handle_unprocessable_entity(invalid)
+    render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end
 end

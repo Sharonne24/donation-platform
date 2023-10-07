@@ -7,5 +7,6 @@ class Charity < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+  validates :image_url, presence: true
   validates :status, presence: true, inclusion: { in: ['pending', 'approved', 'rejected'] }
 end
