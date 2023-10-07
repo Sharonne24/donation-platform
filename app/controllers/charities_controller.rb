@@ -2,6 +2,11 @@
 class CharitiesController < ApplicationController
   # before_action :authenticate_user!, only: [:apply]
 
+  # Display a list of charities
+  def index
+    charities = Charity.all
+    render json: charities
+  end
 
   # Apply to Become a Charity
   def apply
@@ -14,9 +19,20 @@ class CharitiesController < ApplicationController
     end
   end
 
+  # show charity details
+  def show
+    charity = Charity.find(params[:id])
+    render json: charity
+  end
+  
   
 
   private
+
+  def find_charity
+    @charity = Charity.find(params[:id])
+  end
+  
 
   def charity_params
     params.permit(:name, :description, :status, :image_url).merge(user_id: session[:user_id])
