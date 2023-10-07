@@ -1,7 +1,4 @@
-
 class CharitiesController < ApplicationController
-  # before_action :authenticate_user!, only: [:apply]
-
   # Display a list of charities
   def index
     charities = Charity.all
@@ -24,7 +21,8 @@ class CharitiesController < ApplicationController
     charity = Charity.find(params[:id])
     render json: charity
   end
-  #edit the charity details
+
+  # Edit the charity details
   def edit
     charity = Charity.find(params[:id])
     render json: charity

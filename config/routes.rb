@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   post '/charities/apply', to: 'charities#apply'
   get '/charities/:id', to: 'charities#show'
   get '/charities', to: 'charities#index'
-
+  get '/charities/:id/edit', to: 'charities#edit'
+  # patch '/charities/:id', to: 'charities#update'
    devise_for :users
 
 end
