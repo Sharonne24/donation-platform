@@ -6,4 +6,7 @@ class Donor < ApplicationRecord
   validates :last_name, presence: true, unless: :anonymous?
   validates :email, presence: true, uniqueness: true, unless: :anonymous?
 
+  def anonymous?
+    anonymous == true
+  end
 end
