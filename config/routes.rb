@@ -27,9 +27,8 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   post '/charities/apply', to: 'charities#apply'
-  # resources :charities do
-  #   post 'apply', on: :collection
-  # end
+  get '/charities/:id', to: 'charities#show'
+  get '/charities', to: 'charities#index'
 
    devise_for :users
 
