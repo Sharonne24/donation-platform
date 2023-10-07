@@ -32,7 +32,7 @@ class CharitiesController < ApplicationController
   def update
     charity = Charity.find(params[:id])
     if charity.update(charity_params)
-      render json: charity {message: "Charity details were successfully updated."}, status: :created
+      render json: { message: "Charity details were successfully updated." }, status: :created
     else
       render json: {message: "Charity details were not successfully updated"}, status: :internal_server_error
     end
