@@ -26,11 +26,17 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
+  # apply to become a charity
   post '/charities/apply', to: 'charities#apply'
+  # view charity details
   get '/charities/:id', to: 'charities#show'
   get '/charities', to: 'charities#index'
+  # edit charity details
   get '/charities/:id/edit', to: 'charities#edit'
+  # update charity details
+  put '/charities/:id/update', to: 'charities#update'
   patch '/charities/:id/update', to: 'charities#update'
+
    devise_for :users
 
 end
