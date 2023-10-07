@@ -28,6 +28,9 @@ class CharitiesController < ApplicationController
     render json: charity
   end
   
+  # Update the charity details
+  def update
+    @charity = Charity.find(params[:id])
   
 
   private
