@@ -26,9 +26,10 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :charities do
-    post 'apply', on: :collection
-  end
+  post '/charities/apply', to: 'charities#apply'
+  # resources :charities do
+  #   post 'apply', on: :collection
+  # end
 
    devise_for :users
 
