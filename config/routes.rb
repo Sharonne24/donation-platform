@@ -37,6 +37,11 @@ Rails.application.routes.draw do
   put '/charities/:id/update', to: 'charities#update'
   patch '/charities/:id/update', to: 'charities#update'
 
+  # view donors
+  # get '/donors', to: 'donors#index'
+  # View Donors and Donations page for a specific charity.
+  get '/charities/:id/donors_and_donations', to: 'charities#donors_and_donations'
+
    devise_for :users
 
 end

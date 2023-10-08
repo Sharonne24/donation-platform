@@ -38,6 +38,8 @@ class CharitiesController < ApplicationController
     end
   end
 
+  
+
   private
 
   def find_charity
