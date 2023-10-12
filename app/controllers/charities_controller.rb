@@ -77,7 +77,7 @@ class CharitiesController < ApplicationController
           :reference_id => generate_reference_id,
           :amount => {
             :currency_code => "USD",
-            :value => "10"
+            :value => "#{session['amount']}"
           }
         }
       ],
@@ -103,8 +103,9 @@ class CharitiesController < ApplicationController
 
     # SecureRandom.urlsafe_base64(15)
   end
-  
+
   def handle_unprocessable_entity(invalid)
     render json: {errors: invalid.record.errors.full_messages}, status: :unprocessable_entity
   end
 end
+
