@@ -14,6 +14,10 @@ gem "sqlite3", "~> 1.4"
 gem "pg"
 gem "rack-cors"
 
+gem 'flexirest'
+gem 'request_store'
+gem 'faraday'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
