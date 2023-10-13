@@ -1,4 +1,6 @@
 class CharitiesController < ApplicationController
+  before_action :authorized, only: [:apply, :edit, :update]
+
   # Display a list of charities
   def index
     charities = Charity.all
@@ -38,15 +40,12 @@ class CharitiesController < ApplicationController
     end
   end
 
-  
 
   private
 
-  def find_charity
-    @charity = Charity.find(params[:id])
-  end
-
-
+  # def find_charity
+  #   @charity = Charity.find(params[:id])
+  # end
   def charity_params
     params.permit(:name, :description, :status, :image_url).merge(user_id: session[:user_id])
   end
