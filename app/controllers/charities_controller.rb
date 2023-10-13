@@ -1,9 +1,16 @@
 class CharitiesController < ApplicationController
   before_action :authorized, only: [:apply, :edit, :update]
 
-  # Display a list of charities
+  # Display charities based on the different roles
   def index
-    charities = Charity.all
+    if current_user.role.downcase == "admin"
+      charities = Charity.all
+    elsif current_user.role.downcase == "charity"
+      charities = Charity.where(user_id: current_user.id)
+    else
+      charities = Charity.where(status: ["active", "approved"])
+    end
+
     render json: charities
   end
 

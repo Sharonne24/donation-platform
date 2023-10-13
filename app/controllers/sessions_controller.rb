@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
       user = User.find_by(email: params[:email])
       if user && user.authenticate(params[:password])
         log_in(user)
-        session[:user_id]= user.id
         payload={user_id: user.id}
         token= JWT.encode(payload, ENV["JWT_SECRET"])
         render json: {id: user.id, email: user.email, firstname: user.firstname, secondname: user.secondname, role: user.role, token: token}, status: :created
@@ -24,10 +23,10 @@ class SessionsController < ApplicationController
   private
 
   def log_in(user)
-    session[:user_id] = user.id
+    payload[:user_id] = user.id
   end
 
   def log_out
-    session.delete(:user_id)
+    payload.delete(:user_id)
   end
 end
