@@ -39,29 +39,11 @@ Rails.application.routes.draw do
   put '/charities/:id/update', to: 'charities#update'
   patch '/charities/:id/update', to: 'charities#update'
 
-  # Donations Routes
-  resources :donations
-
-  # Beneficiaries Routes
-  resources :beneficiaries
-
-  # Admin Routes
-  resources :admin
-
-  # Stories Routes
-  resources :stories
-
-  # Additional custom routes
-  # e.g., route for donating to a specific charity
-  post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
-
   # Routes related to charity management
   resources :charities do
     post 'apply', on: :member
     get 'edit', on: :member
     put 'update', on: :member
   end
-
-  devise_for :users
 
 end
