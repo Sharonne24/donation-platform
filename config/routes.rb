@@ -26,6 +26,19 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
+  post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
+
+  # apply to become a charity
+  post '/charities/apply', to: 'charities#apply'
+  # view charity details
+  get '/charities/:id', to: 'charities#show'
+  get '/charities', to: 'charities#index'
+  # edit charity details
+  get '/charities/:id/edit', to: 'charities#edit'
+  # update charity details
+  put '/charities/:id/update', to: 'charities#update'
+  patch '/charities/:id/update', to: 'charities#update'
+
   # Donations Routes
   resources :donations
 
@@ -40,20 +53,15 @@ Rails.application.routes.draw do
 
   # Additional custom routes
   # e.g., route for donating to a specific charity
-
   post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
 
-  # apply to become a charity
-  post '/charities/apply', to: 'charities#apply'
-  # view charity details
-  get '/charities/:id', to: 'charities#show'
-  get '/charities', to: 'charities#index'
-  # edit charity details
-  get '/charities/:id/edit', to: 'charities#edit'
-  # update charity details
-  put '/charities/:id/update', to: 'charities#update'
-  patch '/charities/:id/update', to: 'charities#update'
+  # Routes related to charity management
+  resources :charities do
+    post 'apply', on: :member
+    get 'edit', on: :member
+    put 'update', on: :member
+  end
 
-   devise_for :users
+  devise_for :users
 
 end
