@@ -40,7 +40,6 @@ Rails.application.routes.draw do
 
   # Additional custom routes
   # e.g., route for donating to a specific charity
-post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
 
   # Routes related to charity management
   resources :charities do
