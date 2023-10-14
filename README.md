@@ -4,6 +4,7 @@ This README would normally document whatever steps are necessary to get the
 application up and running.
 
 Things you may want to cover:
+* Test
 
 * Ruby version
 
@@ -13,7 +14,7 @@ Things you may want to cover:
 
 * Database creation
 
-* Database initialization
+* Database initialization.
 
 * How to run the test suite
 

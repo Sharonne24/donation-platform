@@ -1,21 +1,4 @@
 Rails.application.routes.draw do
-  # get 'charities/apply'
-  # get 'charities/edit'
-  # get 'charities/update'
-  # get 'charities/donors'
-  # get 'charities/donations'
-  # get 'charities/stories'
-  # get 'charities/beneficiaries'
-  # get 'charities/automated_donations'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # Defines the root path route ("/")
-  # root "articles#index"
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-   get 'users/new'
-    get 'users/create'
-
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
   resources :charities, only: [:show]
@@ -40,13 +23,15 @@ Rails.application.routes.draw do
 
   # Additional custom routes
   # e.g., route for donating to a specific charity
+
   # Routes related to charity management
   post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
-
+  
   resources :charities do
     post 'apply', on: :member
     get 'edit', on: :member
     put 'update', on: :member
   end
 
+  devise_for :users
 end
