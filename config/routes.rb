@@ -26,6 +26,21 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
+  # Donations Routes
+  resources :donations
+
+  # Beneficiaries Routes
+  resources :beneficiaries
+
+  # Admin Routes
+  resources :admin
+
+  # Stories Routes
+  resources :stories
+
+  # Additional custom routes
+  # e.g., route for donating to a specific charity
+
   post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
 
   # apply to become a charity
