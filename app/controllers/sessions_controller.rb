@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user, except: [:create]
+
   def new
   end
 
@@ -23,10 +25,10 @@ class SessionsController < ApplicationController
   private
 
   def log_in(user)
-    payload[:user_id] = user.id
+    session[:user_id] = user.id
   end
 
   def log_out
-    payload.delete(:user_id)
+    session.delete(:user_id)
   end
 end

@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  # get 'charities/apply'
-  # get 'charities/edit'
-  # get 'charities/update'
-  # get 'charities/donors'
-  # get 'charities/donations'
-  # get 'charities/stories'
-  # get 'charities/beneficiaries'
-  # get 'charities/automated_donations'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
@@ -26,19 +18,17 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
 
-  # # apply to become a charity
-  # post '/charities/apply', to: 'charities#apply'
-  # # view charity details
-  # get '/charities/:id', to: 'charities#show'
-  # get '/charities', to: 'charities#index'
-  # # edit charity details
-  # get '/charities/:id/edit', to: 'charities#edit'
-  # # update charity details
-  # put '/charities/:id/update', to: 'charities#update'
-  # patch '/charities/:id/update', to: 'charities#update'
-
+  
     resources :charities, only: [:index, :show, :edit, :update]
     post '/charities/apply', to: 'charities#apply'
+    patch '/charities/:id/approve-reject', to: 'charities#approve_reject'
+   
+
+  #  resources :charities, only: [:index]
+
+   namespace :admin do
+     resources :pending_charities, only: [:index]
+   end
 
    devise_for :users
 
