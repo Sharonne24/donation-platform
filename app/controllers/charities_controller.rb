@@ -1,5 +1,4 @@
 class CharitiesController < ApplicationController
-  #  before_action :authenticate_user, only: [:index]
   before_action :authenticate_user
   # before_action :charity, only: [:apply, :edit, :update, :index]
   # before_action :admin, only: [:index]
@@ -23,7 +22,7 @@ class CharitiesController < ApplicationController
       charity = Charity.create!(charity_params)
       render json: { message: "Your charity application has been submitted. We will review it shortly." }, status: :created
     else
-      render json: {message: "Application failed"}, status: :internal_server_error
+      render json: {message: "Unauthorized User"}, status: :internal_server_error
     end
 end
 
@@ -50,7 +49,7 @@ end
        charity.update(charity_params)
       render json: { message: "Charity details were successfully updated." }, status: :created
     else
-      render json: {message: "Charity details were not successfully updated"}, status: :internal_server_error
+      render json: {message: "Unauthorized user"}, status: :internal_server_error
     end
   end
 
@@ -64,9 +63,9 @@ end
     charity = Charity.find(params[:id])
     if @current_user.role == "admin"
        charity.update(status: params[:status])
-      render json: { message: "Charity details were successfully updated." }, status: :created
+      render json: { message: "Charity status successfully updated." }, status: :created
     else
-      render json: {message: "Charity details were not successfully updated"}, status: :internal_server_error
+      render json: {message: "Charity status not successfully updated"}, status: :internal_server_error
     end
   end
 
