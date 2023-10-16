@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   # root "articles#index"
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
    get 'users/new'
     get 'users/create'
+
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
@@ -17,6 +19,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   delete '/logout', to: 'sessions#destroy'
+
 
   
     resources :charities, only: [:index, :show, :edit, :update]
@@ -30,6 +33,29 @@ Rails.application.routes.draw do
      resources :pending_charities, only: [:index]
    end
 
-   devise_for :users
+  # Donations Routes
+  resources :donations
 
+  # Beneficiaries Routes
+  resources :beneficiaries
+
+  # Admin Routes
+  resources :admin
+
+  # Stories Routes
+  resources :stories
+
+  # Additional custom routes
+  # e.g., route for donating to a specific charity
+
+  # Routes related to charity management
+  post '/charities/:id/donate', to: 'charities#donate', as: 'donate_to_charity'
+  
+  resources :charities do
+    post 'apply', on: :member
+    get 'edit', on: :member
+    put 'update', on: :member
+  end
+
+  devise_for :users
 end
