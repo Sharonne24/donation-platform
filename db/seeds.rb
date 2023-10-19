@@ -1,7 +1,3 @@
-10.times do |n|
-  User.create!(firstname: "test#{n}", secondname: "test1#{n}", email: "test#{n}@gmail.com", password: "password", role: "charity")
-end
-
 charities = Charity.all
 if charities.length == 0
 puts "Seeding data"
