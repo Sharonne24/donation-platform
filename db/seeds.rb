@@ -54,7 +54,7 @@ Charity.create(
     united by their commitment to humanitarian principles. They provide emergency response,
     disaster relief, and support to those affected by conflicts and disasters.",
   image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQYoN0m2XMpWpVRUXvXO-Q-Y4XaGwlzPdmVCfdmjn7cvmqHXW4itjTZBQ_ftuek-C9okQ&usqp=CAU",
-  user_id:1
+  user_id:7
 )
 
 Charity.create(
@@ -63,7 +63,7 @@ Charity.create(
     helping communities overcome poverty and injustice. They provide access to clean water,
     education, healthcare, and economic development programs.",
   image_url: "https://www.gbnews.ch/wp-content/gbnews-uploads/2014/09/worldvision.jpg",
-  user_id:3
+  user_id:7
 )
 
 Charity.create(
@@ -81,7 +81,7 @@ Charity.create(
    inequality. With operations in many countries, Concern provides emergency relief, healthcare, education,
     and livelihood support to those in crisis.",
   image_url: "https://primson.org/dev/wp-content/uploads/2017/10/concern.gif",
-  user_id:2  
+  user_id:7  
 )
 
 Charity.create(
@@ -108,7 +108,7 @@ Charity.create(
    approach. They implement projects that address education, healthcare, livelihoods, and 
    infrastructure development to uplift communities.",
   image_url: "https://us.123rf.com/450wm/carmendorin/carmendorin1406/carmendorin140600251/29390102-abstract-background-with-hand-prints-and-text-charity.jpg?ver=6",
-  user_id:3
+  user_id:7
 )
 
 Charity.create(

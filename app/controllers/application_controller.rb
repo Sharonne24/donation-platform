@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
      include ActionController::Cookies
      before_action :authorize_paypal_api_request!
      before_action :authenticate_user
-
-
+  
     SECRET_KEY = ENV["JWT_SECRET"]
     # ALGORITHM = 'HS256'.freeze
   
