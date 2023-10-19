@@ -1,17 +1,18 @@
 class CharitiesController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   # before_action :charity, only: [:apply, :edit, :update, :index]
   # before_action :admin, only: [:index]
 
   # Display charities based on the different roles
   def index
-    if @current_user.role == "admin"
-      charities = Charity.all
-    elsif @current_user.role == "charity"
-      charities = Charity.where(user_id: @current_user.id)
-    else 
-      charities = Charity.where(status: ["active", "approved"])
-    end
+    # if @current_user&.role == "admin"
+    #   charities = Charity.all
+    # elsif @current_user&.role == "charity"
+    #   charities = Charity.where(user_id: @current_user&.id)
+    # else 
+    #   charities = Charity.where(status: ["active", "approved"])
+    # end
+    charities = Charity.all
 
     render json: charities
   end
@@ -70,7 +71,8 @@ end
   end
   def donate
     charity = Charity.find(params[:id])
-    @donation = charity.donations.build.merge(user_id: @current_user.id)
+    @donation = charity.donations.build
+    # .merge(user_id: @current_user.id)
     session[:amount] = @donation.amount
     response = Paypal::Checkout.create(paypal_payment_hash)
     checkout_link = response.links.find { |link| link['rel'] == 'payer-action' }
@@ -98,7 +100,7 @@ end
           :reference_id => generate_reference_id,
           :amount => {
             :currency_code => "USD",
-            :value => "#{session['amount']}"
+            :value => "15"
           }
         }
       ],
@@ -111,8 +113,8 @@ end
             :landing_page => "LOGIN",
             :shipping_preference => "GET_FROM_FILE",
             :user_action => "PAY_NOW",
-            :return_url => "https://example.com/returnUrl",
-            :cancel_url => "https://example.com/cancelUrl"
+            :return_url => "https://6e88-197-237-12-40.ngrok-free.app/callback",
+            :cancel_url => "https://6e88-197-237-12-40.ngrok-free.app/callback"
           }
         }
       }

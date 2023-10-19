@@ -35,8 +35,8 @@ class Callbacks::PaypalController < ApplicationController
               :landing_page => "LOGIN",
               :shipping_preference => "SET_PROVIDED_ADDRESS",
               :user_action => "PAY_NOW",
-              :return_url => "https://e3b3-102-213-179-31.ngrok-free.app/callback",
-              :cancel_url => "https://e3b3-102-213-179-31.ngrok-free.app/callback"
+              :return_url => "https://6e88-197-237-12-40.ngrok-free.app/callback",
+              :cancel_url => "https://6e88-197-237-12-40.ngrok-free.app/callback"
             }
           }
         }
