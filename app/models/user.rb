@@ -10,4 +10,17 @@ class User < ApplicationRecord
      validates :firstname, presence: true
      validates :secondname, presence: true
      validates :role, presence: true
+
+    
+  def admin?
+    role == 'admin'
+  end
+
+  def charity?
+    role == 'charity'
+  end
+
+  def user?
+    role == 'user'
+  end
 end
