@@ -22,7 +22,7 @@ In many sub-Saharan countries, girls from economically disadvantaged families mi
 
 ### Solution
 
-The SNEP project aims to raise funds by encouraging repeat donations. The goal is to create a platform that allows users to make regular donations to charities dedicated to providing these essential supplies. Users can set up automated repeat donations, such as monthly contributions. The platform also allows donors to choose whether they want to remain anonymous and offers reminders to ensure consistent support. Donations can be made through various payment services like PayPal and Stripe.
+The SNEP project aims to raise funds by encouraging repeat donations. The goal is to create a platform that allows users to make regular donations to charities dedicated to providing these essential supplies. Users can set up automated repeat donations, such as monthly contributions. The platform also allows donors to choose whether they want to remain anonymous and offers reminders to ensure consistent support. Donations can be made through various payment services like PayPal.
 
 ## Team
 
@@ -60,7 +60,7 @@ SNEP serves the following user roles:
 - Choose whether to remain an anonymous donor.
 - Receive reminders to donate at the same time each month.
 - Read stories about the beneficiaries of their donations.
-- Make donations via Stripe.
+- Make donations via PayPal.
 
 ### Charity
 
@@ -85,7 +85,7 @@ SNEP serves the following user roles:
 - **Wireframes**: Designed in Figma (Mobile-friendly)
 - **Frontend**: ReactJS and Redux Toolkit (State Management)
 - **Authentication**: Devise and JWT (JSON Web Tokens)
-- **Payment Gateways**: PayPal, Stripe
+- **Payment Gateways**: PayPal
 
 ## Gemfile
 
