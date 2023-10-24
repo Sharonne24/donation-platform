@@ -58,4 +58,6 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+  get '/callback', to: 'callbacks/paypal#order'
+  post '/confirm_order', to: 'callbacks/paypal#confirm_order', as: 'confirm_order'
 end

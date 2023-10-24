@@ -70,7 +70,7 @@ end
   end
   def donate
     charity = Charity.find(params[:id])
-    @donation = charity.donations.build(donation_params)
+    @donation = charity.donations.build.merge(user_id: @current_user.id)
     session[:amount] = @donation.amount
     response = Paypal::Checkout.create(paypal_payment_hash)
     checkout_link = response.links.find { |link| link['rel'] == 'payer-action' }
@@ -111,8 +111,8 @@ end
             :landing_page => "LOGIN",
             :shipping_preference => "GET_FROM_FILE",
             :user_action => "PAY_NOW",
-            :return_url => "https://example.com/returnUrl",
-            :cancel_url => "https://example.com/cancelUrl"
+            :return_url => "https://6e88-197-237-12-40.ngrok-free.app/callback",
+            :cancel_url => "https://6e88-197-237-12-40.ngrok-free.app/callback"
           }
         }
       }
